@@ -35,7 +35,7 @@ namespace SimpleHR.Tests.Controllers
             ViewResult result = controller.About() as ViewResult;
 
             // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+            Assert.AreEqual("Just a simple, pretentious HR Employee Directory Application.", result.ViewBag.Message);
         }
 
         [TestMethod]
