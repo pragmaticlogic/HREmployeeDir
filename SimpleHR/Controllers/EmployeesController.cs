@@ -17,7 +17,7 @@ namespace SimpleHR.Controllers
         private EmployeeDbContext db = new EmployeeDbContext();
 
         // GET: Employees
-        public ActionResult Index(string sortOrder)
+        public ActionResult Index(string sortOrder, string searchString)
         {
             //var employees = db.Employees.Include(e => e.Credential);
             //return View(employees.ToList());
@@ -26,6 +26,11 @@ namespace SimpleHR.Controllers
             ViewBag.FirstNameSortParm = String.IsNullOrEmpty(sortOrder) ? "first_name_desc" : "";            
 
             var employees = db.Employees.Include(e => e.Credential);
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                employees = employees.Where(s => s.Lastname.ToUpper().Contains(searchString.ToUpper())
+                               || s.FirstName.ToUpper().Contains(searchString.ToUpper()));
+            }
 
             switch (sortOrder)
             {
