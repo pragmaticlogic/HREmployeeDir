@@ -140,27 +140,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201410290706147_InitialCreate.cs" />
-    <Compile Include="Migrations\201410290706147_InitialCreate.Designer.cs">
-      <DependentUpon>201410290706147_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410290758255_InitialCreate1.cs" />
-    <Compile Include="Migrations\201410290758255_InitialCreate1.Designer.cs">
-      <DependentUpon>201410290758255_InitialCreate1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410290800414_InitialCreate2.cs" />
-    <Compile Include="Migrations\201410290800414_InitialCreate2.Designer.cs">
-      <DependentUpon>201410290800414_InitialCreate2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410291303368_svidina.cs" />
-    <Compile Include="Migrations\201410291303368_svidina.Designer.cs">
-      <DependentUpon>201410291303368_svidina.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201410291319296_svidina1.cs" />
-    <Compile Include="Migrations\201410291319296_svidina1.Designer.cs">
-      <DependentUpon>201410291319296_svidina1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Credential.cs" />
     <Compile Include="Models\Employee.cs" />
     <Compile Include="Models\EmployeeRole.cs" />
@@ -224,23 +203,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201410290706147_InitialCreate.resx">
-      <DependentUpon>201410290706147_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410290758255_InitialCreate1.resx">
-      <DependentUpon>201410290758255_InitialCreate1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410290800414_InitialCreate2.resx">
-      <DependentUpon>201410290800414_InitialCreate2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410291303368_svidina.resx">
-      <DependentUpon>201410291303368_svidina.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201410291319296_svidina1.resx">
-      <DependentUpon>201410291319296_svidina1.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
