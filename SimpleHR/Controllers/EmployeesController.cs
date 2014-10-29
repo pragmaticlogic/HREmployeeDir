@@ -14,16 +14,26 @@ namespace SimpleHR.Controllers
 {
     public class EmployeesController : Controller
     {
+        private const int PAGE_SIZE = 5;
         private EmployeeDbContext db = new EmployeeDbContext();
 
         // GET: Employees
-        public ActionResult Index(string sortOrder, string searchString)
-        {
-            //var employees = db.Employees.Include(e => e.Credential);
-            //return View(employees.ToList());
-
+        public ActionResult Index(string sortOrder, string filter, string searchString, int? page)
+        {            
             ViewBag.LastNameSortParm = String.IsNullOrEmpty(sortOrder) ? "last_name_desc" : "";
-            ViewBag.FirstNameSortParm = String.IsNullOrEmpty(sortOrder) ? "first_name_desc" : "";            
+            ViewBag.FirstNameSortParm = String.IsNullOrEmpty(sortOrder) ? "first_name_desc" : "";
+            ViewBag.CurrentSort = sortOrder;
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = filter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
 
             var employees = db.Employees.Include(e => e.Credential);
             if (!String.IsNullOrEmpty(searchString))
@@ -47,7 +57,9 @@ namespace SimpleHR.Controllers
                         .ThenBy(s=>s.FirstName);
                     break;
             }
-            return View(employees.ToList());
+
+            int pageNumber = (page ?? 1);
+            return View(employees.ToPagedList(pageNumber, PAGE_SIZE));
         }
 
         // GET: Employees/Details/5
