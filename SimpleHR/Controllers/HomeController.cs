@@ -15,14 +15,14 @@ namespace SimpleHR.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "Just a simple, pretentious HR Employee Directory Application.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Kevin Le.";
 
             return View();
         }

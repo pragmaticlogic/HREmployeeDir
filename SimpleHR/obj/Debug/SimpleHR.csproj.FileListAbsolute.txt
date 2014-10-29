@@ -40,3 +40,7 @@ c:\users\kevin\documents\visual studio 2013\Projects\SimpleHR\SimpleHR\obj\Debug
 c:\users\kevin\documents\visual studio 2013\Projects\SimpleHR\SimpleHR\obj\Debug\SimpleHR.Migrations.InitialCreate2.resources
 C:\Users\kevin\Documents\Visual Studio 2013\Projects\SimpleHR\SimpleHR\obj\Debug\SimpleHR.Migrations.svidina.resources
 C:\Users\kevin\Documents\Visual Studio 2013\Projects\SimpleHR\SimpleHR\obj\Debug\SimpleHR.Migrations.svidina1.resources
+C:\Users\kevin\documents\visual studio 2013\Projects\SimpleHR\SimpleHR\bin\PagedList.dll
+C:\Users\kevin\documents\visual studio 2013\Projects\SimpleHR\SimpleHR\bin\PagedList.Mvc.dll
+C:\Users\kevin\documents\visual studio 2013\Projects\SimpleHR\SimpleHR\bin\PagedList.xml
+C:\Users\kevin\documents\visual studio 2013\Projects\SimpleHR\SimpleHR\bin\PagedList.Mvc.xml

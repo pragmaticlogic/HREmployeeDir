@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<SimpleHR.Models.Employee>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Employee Directory";
 }
 
-<h2>Index</h2>
+<h2>@ViewBag.Title</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,10 +12,11 @@
 <table class="table">
     <tr>        
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            <!--@Html.DisplayNameFor(model => model.FirstName)-->
+            @Html.ActionLink("First Name", "Index", new { sortOrder = ViewBag.FirstNameSortParm })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Lastname)
+            @Html.ActionLink("Last Name", "Index", new { sortOrder = ViewBag.LastNameSortParm })
         </th>
         <th>
             @Html.DisplayNameFor(model => model.MiddleName)

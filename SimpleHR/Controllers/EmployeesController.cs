@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using SimpleHR.DataAccess;
 using SimpleHR.Models;
+using PagedList;
 
 namespace SimpleHR.Controllers
 {
@@ -16,9 +17,31 @@ namespace SimpleHR.Controllers
         private EmployeeDbContext db = new EmployeeDbContext();
 
         // GET: Employees
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder)
         {
+            //var employees = db.Employees.Include(e => e.Credential);
+            //return View(employees.ToList());
+
+            ViewBag.LastNameSortParm = String.IsNullOrEmpty(sortOrder) ? "last_name_desc" : "";
+            ViewBag.FirstNameSortParm = String.IsNullOrEmpty(sortOrder) ? "first_name_desc" : "";            
+
             var employees = db.Employees.Include(e => e.Credential);
+
+            switch (sortOrder)
+            {
+                case "last_name_desc":
+                    employees = employees.OrderByDescending(s => s.Lastname)
+                        .ThenBy(s=> s.FirstName);
+                    break;                
+                case "first_name_desc":
+                    employees = employees.OrderByDescending(s => s.FirstName)
+                        .ThenBy(s => s.Lastname);
+                    break;                               
+                default:
+                    employees = employees.OrderBy(s => s.Lastname)
+                        .ThenBy(s=>s.FirstName);
+                    break;
+            }
             return View(employees.ToList());
         }
 
