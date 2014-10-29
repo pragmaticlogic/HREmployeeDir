@@ -1,0 +1,32 @@
+CREATE TABLE Credentials
+(
+Id int IDENTITY(1,1) PRIMARY KEY,
+UserName nvarchar (256) NOT NULL,
+PasswordHash nvarchar(max) null
+)
+
+CREATE TABLE Roles
+(
+Id int IDENTITY(1,1) PRIMARY KEY,
+RoleName nvarchar (256) NOT NULL
+)
+
+CREATE TABLE EmployeeRoles (
+    CredentialId int NOT NULL,
+    RoleId int NOT NULL,
+    CONSTRAINT PK_EmployeeRoles PRIMARY KEY CLUSTERED (CredentialId ASC, RoleId ASC),
+    CONSTRAINT FK_Roles_RoleId2 FOREIGN KEY (RoleId) REFERENCES Roles (Id) ON DELETE CASCADE,
+    CONSTRAINT FK_Credential_CredentialId2 FOREIGN KEY (CredentialId) REFERENCES Credentials (Id) ON DELETE CASCADE
+);
+
+CREATE TABLE Employees
+(
+CredentialId int NOT NULL,
+FirstName nvarchar (256) NULL,
+MiddleName nvarchar (256) NULL,
+LastName nvarchar (256) NULL,
+Location nvarchar(max) NULL,
+EmployeeId nvarchar(max) NULL,
+CONSTRAINT Employee_Credential PRIMARY KEY (CredentialId),
+CONSTRAINT FK_Employee_Credential FOREIGN KEY (CredentialId) REFERENCES Credentials (Id) ON DELETE CASCADE
+)

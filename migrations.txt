@@ -1,0 +1,56 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Data.Entity;
+using SimpleHR.Models;
+
+namespace SimpleHR.DataAccess
+{
+    public class EmployeeDbInitializer : DropCreateDatabaseIfModelChanges<EmployeeDbContext>
+    {
+        protected override void Seed(EmployeeDbContext context)
+        {
+            var roles = new List<Role>
+            {
+                new Role { RoleName = _RoleName.Admin },
+                new Role { RoleName = _RoleName.HR },
+                new Role { RoleName = _RoleName.Employee },
+            };
+            roles.ForEach(r => context.Roles.Add(r));
+            context.SaveChanges();
+
+            var credentials = new List<Credential>
+            {
+                new Credential { LoginId = "kevin", PasswordHash = "kevin" },
+                new Credential { LoginId = "deran", PasswordHash = "deran" },
+                new Credential { LoginId = "ben", PasswordHash = "ben" },
+            };
+            credentials.ForEach(c => context.Credentials.Add(c));
+            context.SaveChanges();
+
+            var employees = new List<Employee>
+            {
+                new Employee { FirstName = "Kevin", MiddleName = "H", Lastname = "Le", EmployeeId = "001", Location = "Houston", LoginId = "kevin"},
+                new Employee { FirstName = "Deran", MiddleName = "", Lastname = "Schilling", EmployeeId = "002", Location = "Dallas", LoginId = "deran"},
+                new Employee { FirstName = "Ben", MiddleName = "", Lastname = "Heebner", EmployeeId = "003", Location = "Austin", LoginId = "ben"},
+            };
+            employees.ForEach(e => context.Employees.Add(e));
+            context.SaveChanges();
+
+            var employeeRoles = new List<EmployeeRole>
+            {
+                new EmployeeRole { LoginId = "kevin", RoleName = _RoleName.Admin },
+                new EmployeeRole { LoginId = "kevin", RoleName = _RoleName.Employee },
+
+                new EmployeeRole { LoginId = "deran", RoleName = _RoleName.HR },
+                new EmployeeRole { LoginId = "deran", RoleName = _RoleName.Employee },
+
+                new EmployeeRole { LoginId = "ben", RoleName = _RoleName.Employee },
+            };
+
+            employeeRoles.ForEach(er => context.EmployeeRoles.Add(er));
+            context.SaveChanges();
+        }
+    }
+}
