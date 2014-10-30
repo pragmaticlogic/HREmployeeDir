@@ -9,15 +9,16 @@ using System.Web.Mvc;
 using SimpleHR.DataAccess;
 using SimpleHR.Models;
 using PagedList;
+using SimpleHR.Filters;
 
 namespace SimpleHR.Controllers
 {
+    [Authorize]
     public class EmployeesController : Controller
     {
         private const int PAGE_SIZE = 5;
         private EmployeeDbContext db = new EmployeeDbContext();
-
-        [Authorize]
+        
         public ActionResult Index(string sortOrder, string filter, string searchString, int? page)
         {            
             ViewBag.LastNameSortParm = String.IsNullOrEmpty(sortOrder) ? "last_name_desc" : "";
@@ -78,6 +79,7 @@ namespace SimpleHR.Controllers
         }
 
         // GET: Employees/Create
+        [HRAuthorizeAttribute]
         public ActionResult Create()
         {
             ViewBag.LoginId = new SelectList(db.Credentials, "LoginId", "PasswordHash");
@@ -89,6 +91,7 @@ namespace SimpleHR.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [HRAuthorizeAttribute]
         public ActionResult Create([Bind(Include = "EmployeeId,FirstName,Lastname,MiddleName,Address,City,County,State,ZipCode,OfficePhone,CellPhone,Email,LoginId")] Employee employee)
         {
             if (ModelState.IsValid)
@@ -104,6 +107,7 @@ namespace SimpleHR.Controllers
         }
 
         // GET: Employees/Edit/5
+        [HRAuthorizeAttribute]
         public ActionResult Edit(Guid? id)
         {
             if (id == null)
@@ -124,6 +128,7 @@ namespace SimpleHR.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [HRAuthorizeAttribute]
         public ActionResult Edit([Bind(Include = "EmployeeId,FirstName,Lastname,MiddleName,Address,City,County,State,ZipCode,OfficePhone,CellPhone,Email,LoginId")] Employee employee)
         {
             if (ModelState.IsValid)
@@ -137,6 +142,7 @@ namespace SimpleHR.Controllers
         }
 
         // GET: Employees/Delete/5
+        [HRAuthorizeAttribute]
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
@@ -154,6 +160,7 @@ namespace SimpleHR.Controllers
         // POST: Employees/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [HRAuthorizeAttribute]
         public ActionResult DeleteConfirmed(Guid id)
         {
             Employee employee = db.Employees.Find(id);

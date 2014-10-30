@@ -11,6 +11,7 @@ using SimpleHR.DataAccess;
 using Ninject;
 using Ninject.Web.Common;
 using SimpleHR.Providers;
+using Ninject.Modules;
 
 namespace SimpleHR
 {
@@ -29,13 +30,27 @@ namespace SimpleHR
 
     public class MvcApplication : NinjectHttpApplication
     {
+        //http://stackoverflow.com/questions/5078046/ninject-and-mvc3-dependency-injection-to-action-filters
+        private class AppNinjectModule : NinjectModule
+        {
+            public override void Load()
+            {
+                Bind<IRolesCheckProvider>().To<RolesCheckProvider>();                
+            }
+        }
+
         protected override IKernel CreateKernel()
         {
+            var modules = new INinjectModule[] {
+                new AppNinjectModule()
+            };
+
             IKernel kernel = new StandardKernel();
 
             kernel.Load(System.Reflection.Assembly.GetExecutingAssembly());
 
             kernel.Bind<ILoginProvider>().To<LoginProvider>();
+            kernel.Bind<IRolesCheckProvider>().To<RolesCheckProvider>();            
 
             return kernel;
         }
@@ -53,6 +68,11 @@ namespace SimpleHR
             EmployeeDbContext.Database.Initialize(true);
 
             ControllerBuilder.Current.SetControllerFactory(new NinjectControllerFactory(CreateKernel()));
+        }
+
+        public static void RegisterGlobalFilters(GlobalFilterCollection filters)
+        {
+            filters.Add(new HandleErrorAttribute());
         }
     }
 }

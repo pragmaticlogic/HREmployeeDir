@@ -55,6 +55,11 @@ namespace SimpleHR.Controllers
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
-        }        
+        }
+        
+        public ActionResult Unauthorize()
+        {
+            return View();
+        }
     }
 }

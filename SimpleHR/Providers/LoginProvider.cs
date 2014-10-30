@@ -18,7 +18,7 @@ namespace SimpleHR.Providers
             var hasher = new PasswordHasher();
             Credential credential = db.Credentials.Find(loginId);
 
-            return credential.PasswordHash == hasher.HashPassword(password);               
+            return credential != null && credential.PasswordHash == hasher.HashPassword(password);               
         }
 
         protected void Dispose(bool disposing)
