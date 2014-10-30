@@ -38,3 +38,7 @@ C:\Users\kevin\documents\visual studio 2013\Projects\SimpleHR\SimpleHR\bin\Paged
 C:\Users\kevin\documents\visual studio 2013\Projects\SimpleHR\SimpleHR\bin\PagedList.Mvc.dll
 C:\Users\kevin\documents\visual studio 2013\Projects\SimpleHR\SimpleHR\bin\PagedList.xml
 C:\Users\kevin\documents\visual studio 2013\Projects\SimpleHR\SimpleHR\bin\PagedList.Mvc.xml
+C:\Users\kevin\documents\visual studio 2013\Projects\SimpleHR\SimpleHR\bin\Ninject.dll
+C:\Users\kevin\documents\visual studio 2013\Projects\SimpleHR\SimpleHR\bin\Ninject.xml
+C:\Users\kevin\documents\visual studio 2013\Projects\SimpleHR\SimpleHR\bin\Ninject.Web.Common.dll
+C:\Users\kevin\documents\visual studio 2013\Projects\SimpleHR\SimpleHR\bin\Ninject.Web.Common.xml

@@ -17,7 +17,7 @@ namespace SimpleHR.Controllers
         private const int PAGE_SIZE = 5;
         private EmployeeDbContext db = new EmployeeDbContext();
 
-        // GET: Employees
+        [Authorize]
         public ActionResult Index(string sortOrder, string filter, string searchString, int? page)
         {            
             ViewBag.LastNameSortParm = String.IsNullOrEmpty(sortOrder) ? "last_name_desc" : "";
